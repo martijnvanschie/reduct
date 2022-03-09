@@ -28,5 +28,6 @@ jobs:
     - name: Publish NuGet
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
+        VERSION_FILE_PATH: package.props
         PROJECT_FILE_PATH: Reduct.System/Reduct.System.csproj
         NUGET_SOURCE: https://nuget.pkg.github.com
