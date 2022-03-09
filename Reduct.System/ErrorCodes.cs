@@ -22,9 +22,9 @@
 
         static ErrorCodes()
         {
-            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.SUCCES, "Succesfull."));
-            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.ERROR_ARGUMENTS_INVALID_AMOUNT, "Invalid amount of arguments provided."));
-            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.ERROR_ARGUMENT_BAD_INPUT, "Unable to process arguments. Bad arguments."));
+            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.SUCCES, "Succesfull"));
+            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.ERROR_ARGUMENTS_INVALID_AMOUNT, "Invalid amount of arguments provided"));
+            _exitCodes.Add(new ErrorCodeDescription(ErrorCode.ERROR_ARGUMENT_BAD_INPUT, "Unable to process arguments. Bad arguments"));
             _exitCodes.Add(new ErrorCodeDescription(ErrorCode.ERROR_ARGUMENT_ASSEMBLY_NOT_FOUND, "Invalid argument. Input assembly not found"));
         }
     }
