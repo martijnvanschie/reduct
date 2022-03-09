@@ -26,8 +26,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish NuGet
-      uses: brandedoutcast/publish-nuget@v2.5.5
-      with:
-        VERSION_FILE_PATH: package.props
-        PROJECT_FILE_PATH: Reduct.System/Reduct.System.csproj
-        NUGET_SOURCE: https://nuget.pkg.github.com
+      run: | 
+           dotnet nuget add source --username martijnvanschie --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/martijnvanschie/index.json"
+           dotnet nuget push **\*.nupkg --source "github"
