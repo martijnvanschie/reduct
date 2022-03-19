@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\package.props" />
 
@@ -7,7 +7,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/martijnvanschie/reduct/tree/main/Reduct.System</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/martijnvanschie/reduct/tree/main/Reduct.Azure.EventGrid</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.EventGrid" Version="4.9.0" />
+  </ItemGroup>
 
 </Project>

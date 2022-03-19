@@ -1,12 +1,16 @@
 <Project>
-  <PropertyGroup>
-    <Version>0.1.0-alpha</Version>
-    <Authors>Martijn van Schie</Authors>
-    <Company>Martijn van Schie</Company>
-    <Product>Reduct Framework</Product>
-    <Description>A set of personal libraries written in dotnet to reduce code duplication for common functionalities</Description>
-    <RepositoryUrl>https://github.com/martijnvanschie/reduct</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <NeutralLanguage>en-US</NeutralLanguage>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<FileVersion>0.9.0.0</FileVersion>
+		<Version>0.9.0-beta.1</Version>
+		<PackageVersion>0.9.0-beta.1</PackageVersion>
+		<Authors>Martijn van Schie</Authors>
+		<Company>Martijn van Schie</Company>
+		<Product>Reduct Framework</Product>
+		<Description>A set of personal libraries written in dotnet to reduce code duplication for common functionalities</Description>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/martijnvanschie/reduct</RepositoryUrl>
+	</PropertyGroup>
 </Project>
