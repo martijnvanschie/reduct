@@ -15,17 +15,32 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build for Release
       run: dotnet build --configuration Release --no-restore
+
     - name: Perform xUnit Test
       run: dotnet test --configuration Release --no-build --verbosity normal
+
     - name: Publish NuGet to Github
       run: | 
         dotnet nuget add source --username martijnvanschie --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/martijnvanschie/index.json"
         dotnet nuget push **\*.nupkg --source "github" --skip-duplicate
+    
+    - name: Test Azure CLI Login
+      env:
+        APP_ID: ${{ secrets.APP_ID }}
+        APP_SECRET: ${{ secrets.APP_SECRET }}
+        APTENTANT_IDP_ID: ${{ secrets.APTENTANT_IDP_ID }}
+      run: |
+        az account clear
+        $output = az login --service-principal -u $env:APP_ID -p $env:APP_SECRET --tenant $env:TENTANT_ID
+        az account show --query user
