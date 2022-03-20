@@ -1,4 +1,6 @@
 ﻿using Azure;
+using Azure.Core;
+using Azure.Identity;
 using Azure.Messaging.EventGrid;
 using System;
 using System.Collections.Generic;

@@ -4,16 +4,19 @@ using Reduct.System;
 using System;
 using Xunit.Abstractions;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Reduct.Framework.Tests.SystemTests
 {
     public class ErrorCodeTests
     {
         private readonly ITestOutputHelper output;
+        IConfiguration configuration;
 
         public ErrorCodeTests(ITestOutputHelper output)
         {
             this.output = output;
+            configuration = new ConfigurationBuilder().AddEnvironmentVariables().Build();
         }
 
         [Theory]
