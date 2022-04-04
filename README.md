@@ -1,5 +1,9 @@
 # The Reduct Framework
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/martijnvanschie/reduct/Build%20Reduct%20Framework?logo=github)
+
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/martijnvanschie/reduct?label=Latest)
+
 ## Why a Framework
 
 This framework is a personal set of libraries with functions and extentions that i find usefully for other projects.
