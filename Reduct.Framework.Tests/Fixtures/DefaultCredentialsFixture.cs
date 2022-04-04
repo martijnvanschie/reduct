@@ -10,7 +10,7 @@ namespace Reduct.Framework.Tests.Fixtures
 
         public DefaultCredentialsFixture()
         {
-            Credential = CredentialsManager.GetCredentials();
+            Credential = CredentialsManager.GetDefaultCredential();
         }
 
         public void Dispose()

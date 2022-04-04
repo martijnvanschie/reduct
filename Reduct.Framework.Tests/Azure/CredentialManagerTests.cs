@@ -10,17 +10,47 @@ using System.Threading.Tasks;
 using Xunit;
 using System;
 using System.Threading;
+using FluentAssertions.Execution;
+using FluentAssertions.Extensions;
+using Xunit.Abstractions;
+using System.Diagnostics;
 
 namespace Reduct.Framework.Tests.Azure
 {
 
     public class CredentialManagerTests : IClassFixture<DefaultCredentialsFixture>
     {
+        private readonly ITestOutputHelper output;
         DefaultCredentialsFixture _fixture;
 
-        public CredentialManagerTests(DefaultCredentialsFixture fixture)
+        public CredentialManagerTests(DefaultCredentialsFixture fixture, ITestOutputHelper output)
         {
             this._fixture = fixture;
+            this.output = output;
+        }
+
+        [Fact]
+        [Trait("category", "trial")]
+        public async void GetToken_Should_Be_Less_Than_750ms_With_Sequential_Calls()
+        {
+            var credentials = CredentialsManager.GetDefaultCredential(false);
+
+            string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
+
+            Action someAction = () => credentials.GetToken(new TokenRequestContext(scopes));
+
+            var sw = Stopwatch.StartNew();
+            someAction.ExecutionTime().Should().BeLessThanOrEqualTo(20000.Milliseconds());
+            output.WriteLine($"First GetToken call took [{sw.ElapsedMilliseconds}] milliseconds");
+
+            await Task.Delay(100);
+
+            for (int i = 0; i < 5; i++)
+            {
+                sw = Stopwatch.StartNew();
+                someAction.ExecutionTime().Should().BeLessThanOrEqualTo(750.Milliseconds());
+                output.WriteLine($"Interation [{i}] for sequential GetToken call took [{sw.ElapsedMilliseconds}] milliseconds");
+            }
         }
 
         [Fact]
@@ -28,6 +58,7 @@ namespace Reduct.Framework.Tests.Azure
         public void DefaultCredentials_Should_Be_Correct()
         {
             string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
+
             var token = _fixture.Credential.GetToken(new TokenRequestContext(scopes));
 
             var handler = new JwtSecurityTokenHandler();
@@ -35,8 +66,12 @@ namespace Reduct.Framework.Tests.Azure
 
             jsonToken.Should().NotBeNull();
 
-            jsonToken?.Claims.First(c => c.Type == "app_displayname").Value.Should().Be("sp-datamesh-dev");
-            jsonToken?.Claims.First(c => c.Type == "tid").Value.Should().Be("e6299caf-b2d5-4341-a225-01f58dfad513");
+            using (new AssertionScope())
+            {
+                jsonToken?.Claims.First(c => c.Type == "iss").Value.Should().Contain("e6299caf-b2d5-4341-a225-01f58dfad513");
+                jsonToken?.Claims.First(c => c.Type == "app_displayname").Value.Should().Be("sp-datamesh-dev");
+                jsonToken?.Claims.First(c => c.Type == "tid").Value.Should().Be("e6299caf-b2d5-4341-a225-01f58dfad513");
+            }
         }
 
         [Fact]
@@ -74,5 +109,11 @@ namespace Reduct.Framework.Tests.Azure
             var ctoken = new CancellationToken();
             var token = credential.GetToken(new TokenRequestContext(scopes), ctoken);
         }
+
+        public async Task Credential_Manager_Should_Use_Options_Settings()
+        {
+
+        }
+
     }
 }
