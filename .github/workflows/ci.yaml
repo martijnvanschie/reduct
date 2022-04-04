@@ -2,30 +2,45 @@ name: Build Reduct Framework
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build for Release
-      run: dotnet build --configuration Release --no-restore
-    - name: Perform xUnit Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
-    - name: Publish NuGet to Github
-      run: | 
-        dotnet nuget add source --username martijnvanschie --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/martijnvanschie/index.json"
-        dotnet nuget push **\*.nupkg --source "github" --skip-duplicate
+      - uses: actions/checkout@v2
+
+      - name: Log in with Azure
+        uses: azure/login@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+      - name: "Run az commands"
+        run: |
+          az account show
+          az group list
+          pwd
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build for Release
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Perform xUnit Test
+        run: dotnet test --configuration Release --no-build --verbosity normal --filter "category!=trial"
+
+      - name: Publish NuGet to Github
+        run: |
+          dotnet nuget add source --username martijnvanschie --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/martijnvanschie/index.json"
+          dotnet nuget push **\*.nupkg --source "github" --skip-duplicate
