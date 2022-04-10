@@ -31,4 +31,10 @@
     <ProjectReference Include="..\Reduct.System\Reduct.System.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="github.linux-x64.runsettings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

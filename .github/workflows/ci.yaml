@@ -38,7 +38,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Perform xUnit Test
-        run: dotnet test --configuration Release --no-build --verbosity normal --filter "category!=trial"
+        run: dotnet test --configuration Release --no-build --verbosity normal --filter "feature!=beta"
 
       - name: Publish NuGet to Github
         run: |

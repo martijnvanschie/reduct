@@ -9,14 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reduct.Framework.Tests", "R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A3A5A65-E48A-4B25-A2C9-C2C8FEFEF3E0}"
 	ProjectSection(SolutionItems) = preProject
+		.runsettings = .runsettings
 		package.props = package.props
+		run-xunit.ps1 = run-xunit.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reduct.Azure.EventGrid", "Reduct.Azure.EventGrid\Reduct.Azure.EventGrid.csproj", "{18F9F735-A023-42D6-AD70-2A411CC89D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reduct.Azure", "Reduct.Azure\Reduct.Azure.csproj", "{E423B796-AFB0-43C6-8B83-5453E6F87AA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reduct.Azure", "Reduct.Azure\Reduct.Azure.csproj", "{E423B796-AFB0-43C6-8B83-5453E6F87AA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reduct.Azure.Resources", "Reduct.Azure.Resources\Reduct.Azure.Resources.csproj", "{1F52FAC4-949A-469B-8036-36D30985A4BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reduct.Azure.Resources", "Reduct.Azure.Resources\Reduct.Azure.Resources.csproj", "{1F52FAC4-949A-469B-8036-36D30985A4BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

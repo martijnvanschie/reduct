@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<RUNSETTINGS>Github Linux x64</RUNSETTINGS>
+			<EXPECTED_OS>Linux</EXPECTED_OS>
+		</EnvironmentVariables>
+	</RunConfiguration>
+</RunSettings>

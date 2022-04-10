@@ -30,7 +30,7 @@ namespace Reduct.Framework.Tests.Azure
         }
 
         [Fact]
-        [Trait("category", "trial")]
+        [Trait("feature", "beta")]
         public async void GetToken_Should_Be_Less_Than_750ms_With_Sequential_Calls()
         {
             var credentials = CredentialsManager.GetDefaultCredential(false);
@@ -54,7 +54,7 @@ namespace Reduct.Framework.Tests.Azure
         }
 
         [Fact]
-        [Trait("category", "trial")]
+        [Trait("feature", "beta")]
         public void DefaultCredentials_Should_Be_Correct()
         {
             string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
@@ -75,7 +75,7 @@ namespace Reduct.Framework.Tests.Azure
         }
 
         [Fact]
-        [Trait("category", "trial")]
+        [Trait("feature", "beta")]
         public async Task Environment_Variable_Should_Be_Correct()
         {
             var test1 = Environment.GetEnvironmentVariable("TEST_XXX");
@@ -85,7 +85,7 @@ namespace Reduct.Framework.Tests.Azure
         [Theory]
         [InlineData(CredentialType.Enviroment)]
         [InlineData(CredentialType.Cli)]
-        [Trait("category", "trial")]
+        [Trait("feature", "beta")]
         public async Task Credential_Types_Should_Work_In_Right_Environment(CredentialType type)
         {
             TokenCredential credential;

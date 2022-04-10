@@ -5,6 +5,9 @@ using System;
 using Xunit.Abstractions;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using Reduct.System.Runtime;
+using FluentAssertions.Execution;
+using Reduct.Framework.Tests.Fixtures;
 
 namespace Reduct.Framework.Tests.SystemTests
 {
@@ -51,6 +54,37 @@ namespace Reduct.Framework.Tests.SystemTests
             }
 
             errorCount.Should().Be(0, "no dots are allowed");
+        }
+    }
+
+    public class RuntimeTests : IClassFixture<DefaultFixture>
+    {
+        private readonly ITestOutputHelper _output;
+        IConfiguration _configuration;
+
+        public RuntimeTests(DefaultFixture fixture, ITestOutputHelper output)
+        {
+            _output = output;
+            _configuration = fixture.Configuration;
+        }
+
+
+        [Fact]
+        [Trait("feature", "beta")]
+        [Trait("category", "env")]
+        public void RuntimeShouldMatchOS()
+        {
+            _output.WriteLine($"env:RUNSETTINGS = [{_configuration["RUNSETTINGS"]}]");
+
+            var expecedOs = _configuration["EXPECTED_OS"];
+            _output.WriteLine($"env:EXPECTED_OS = [{expecedOs}]");
+
+            using (new AssertionScope())
+            {
+                RuntimeInfo.IsWindows.Should().Be(expecedOs.Equals("Windows"));
+                RuntimeInfo.IsLinux.Should().Be(expecedOs.Equals("Linux"));
+                RuntimeInfo.IsMacOS.Should().Be(expecedOs.Equals("MacOS"));
+            }
         }
     }
 }

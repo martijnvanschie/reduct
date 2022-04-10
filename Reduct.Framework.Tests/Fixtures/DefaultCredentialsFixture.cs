@@ -1,10 +1,10 @@
 ﻿using Azure.Identity;
 using Reduct.Azure;
-using System;
+using Xunit.Abstractions;
 
 namespace Reduct.Framework.Tests.Fixtures
 {
-    public class DefaultCredentialsFixture : IDisposable
+    public class DefaultCredentialsFixture : DefaultFixture
     {
         internal DefaultAzureCredential Credential;
 
