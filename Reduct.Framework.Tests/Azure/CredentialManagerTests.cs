@@ -65,6 +65,14 @@ namespace Reduct.Framework.Tests.Azure
             var jsonToken = handler.ReadToken(token.Token) as JwtSecurityToken;
 
             jsonToken.Should().NotBeNull();
+            jsonToken.Claims.Should().HaveCountGreaterThan(1);
+
+            foreach (var item in jsonToken.Claims)
+            {
+                output.WriteLine(item.ToString());
+            }
+
+            output.WriteLine($"");
 
             using (new AssertionScope())
             {

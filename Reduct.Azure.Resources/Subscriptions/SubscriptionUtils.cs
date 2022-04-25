@@ -7,9 +7,9 @@ namespace Reduct.Azure.Resources.Subscriptions
 {
     public class SubscriptionUtils
     {
-        public static async Task<Subscription> GetSubscriptionAsync(TokenCredential credentials, string? subscriptionId = null, bool returnDefault = false)
+        public static async Task<Subscription> GetSubscriptionAsync(TokenCredential credentials, string? subscriptionId = null, bool returnDefault = false, string tenantId = "")
         {
-            ArmClient armClient = ArmClientManager.GetClient(credentials);
+            ArmClient armClient = ArmClientManager.GetClient(credentials, tenantId);
 
             if (subscriptionId is null && returnDefault)
                 return await armClient.GetDefaultSubscriptionAsync();
@@ -26,7 +26,6 @@ namespace Reduct.Azure.Resources.Subscriptions
 
         public static bool IsValidSubscriptionId(string subscriptionId)
         {
-            // ^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$
             var rege = new Regex("^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$");
             var match = rege.IsMatch(subscriptionId);
             return match;

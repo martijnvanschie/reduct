@@ -5,16 +5,29 @@ namespace Reduct.Azure.Resources
 {
     public class ArmClientManager
     {
+        private static IDictionary<string, ArmClient> _clients = new Dictionary<string, ArmClient>();
+
         private static ArmClient _armClient;
 
-        internal static ArmClient GetClient(TokenCredential credential)
+        internal static ArmClient GetClient(TokenCredential credential, string tenantId = "")
         {
-            if (_armClient == null)
+            if (_clients.ContainsKey(tenantId))
             {
-                _armClient = new ArmClient(credential);
+                return _clients[tenantId];
             }
 
-            return _armClient;
+            var armClient = new ArmClient(credential);
+            _clients.Add(tenantId, armClient);
+            return armClient;
+
+
+
+            //if (_armClient == null)
+            //{
+            //    _armClient = new ArmClient(credential);
+            //}
+
+            //return _armClient;
         }
 
     }

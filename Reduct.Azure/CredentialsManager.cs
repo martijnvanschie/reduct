@@ -139,5 +139,16 @@ namespace Reduct.Azure
 
             return _cliCredential;
         }
+
+        /// <summary>
+        /// Returns a new instance of <see cref="AzureCliCredential"/> for the specified tenant.
+        /// </summary>
+        /// <param name="tenantId"></param>
+        /// <returns></returns>
+        public static TokenCredential GetAzureCliCredential(string tenantId)
+        {
+            var cliCredential = new AzureCliCredential(new AzureCliCredentialOptions() { TenantId = tenantId } );
+            return cliCredential;
+        }
     }
 }
