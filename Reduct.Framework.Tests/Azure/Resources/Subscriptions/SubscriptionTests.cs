@@ -28,6 +28,7 @@ namespace Reduct.Framework.Tests.Azure.Resources.Subscriptions
         [InlineData("e6299caf-b2d5-4341-a225-01f58dfad513", "f3222608-49ac-4b9d-993a-f8983fe80300")]
         [InlineData("e6299caf-b2d5-4341-a225-01f58dfad513", "1f66194d-2728-4a2f-a20c-2cadf09856a5")]
         [InlineData("e6299caf-b2d5-4341-a225-01f58dfad513", "f48e62dd-9c7f-4c67-b691-1b3e3df41940")]
+        [Trait("feature", "beta")]
         public async Task Valid_SubscriptionId_With_Tenant_Should_Not_Be_Null(string tenantId, string subscriptionId)
         {
             var credential = Reduct.Azure.CredentialsManager.GetAzureCliCredential(tenantId);
