@@ -7,7 +7,7 @@ namespace Reduct.Azure.Resources.Subscriptions
 {
     public class SubscriptionUtils
     {
-        public static async Task<Subscription> GetSubscriptionAsync(TokenCredential credentials, string? subscriptionId = null, bool returnDefault = false, string tenantId = "")
+        public static async Task<SubscriptionResource> GetSubscriptionAsync(TokenCredential credentials, string? subscriptionId = null, bool returnDefault = false, string tenantId = "")
         {
             ArmClient armClient = ArmClientManager.GetClient(credentials, tenantId);
 
