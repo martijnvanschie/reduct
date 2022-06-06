@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.6.0" />
-	<PackageReference Include="Azure.ResourceManager" Version="1.0.0-beta.8" />
   </ItemGroup>
 
 </Project>
