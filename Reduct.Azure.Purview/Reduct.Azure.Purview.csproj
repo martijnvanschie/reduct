@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\package.props" />
+	
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageProjectUrl>https://github.com/martijnvanschie/reduct/tree/main/Reduct.Azure.Purview</PackageProjectUrl>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="Azure.Analytics.Purview.Account" Version="1.0.0-beta.1" />
+    <PackageReference Include="Azure.Core" Version="1.24.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Reduct.Core\Reduct.Core.csproj" />
+  </ItemGroup>
+
+</Project>

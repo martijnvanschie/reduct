@@ -55,6 +55,21 @@ namespace Reduct.Framework.Tests.Azure
 
         [Fact]
         [Trait("feature", "beta")]
+        public async void GetToken_Should_Be_Less_Than_750ms_With_CliCredential()
+        {
+            var credentials = CredentialsManager.GetAzureCliCredential();
+
+            string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
+
+            Action someAction = () => credentials.GetToken(new TokenRequestContext(scopes), new CancellationToken());
+
+            var sw = Stopwatch.StartNew();
+            someAction.ExecutionTime().Should().BeLessThanOrEqualTo(600.Milliseconds());
+            output.WriteLine($"GetToken call took [{sw.ElapsedMilliseconds}] milliseconds");
+        }
+
+        [Fact]
+        [Trait("feature", "beta")]
         public void DefaultCredentials_Should_Be_Correct()
         {
             string[] scopes = new string[] { "https://graph.microsoft.com/.default" };

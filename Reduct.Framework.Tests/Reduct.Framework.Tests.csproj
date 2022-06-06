@@ -30,8 +30,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Reduct.Azure.EventGrid\Reduct.Azure.EventGrid.csproj" />
+    <ProjectReference Include="..\Reduct.Azure.Purview\Reduct.Azure.Purview.csproj" />
     <ProjectReference Include="..\Reduct.Azure.Resources\Reduct.Azure.Resources.csproj" />
     <ProjectReference Include="..\Reduct.Azure\Reduct.Azure.csproj" />
+    <ProjectReference Include="..\Reduct.Core\Reduct.Core.csproj" />
     <ProjectReference Include="..\Reduct.System\Reduct.System.csproj" />
   </ItemGroup>
 
